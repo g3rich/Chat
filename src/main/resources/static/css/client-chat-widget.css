@@ -1,0 +1,100 @@
+#clientChatButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#clientChatWindow {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#clientChatWindow header {
+    background: #0084ff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#clientMessages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#clientNameInput {
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+}
+
+#clientInputForm {
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+}
+
+.message {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.message {
+    max-width: 70%;
+    min-width: 80px;
+    /*margin: 5px;
+    padding: 10px;
+    border-radius: 12px;*/
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #f1f0f0;
+    display: inline-block;
+    clear: both;
+}
+
+.message-left {
+    float: left;
+    background-color: #ffeeba;
+    border-top-left-radius: 0;
+
+}
+
+.message-right {
+    float: right;
+    background-color: #dcf8c6;
+    border-top-right-radius: 0;
+    text-align: right;
+}
+
+.message-form {
+    width: 100%;
+}
+
+.button [type="submit"] {
+    width: 100%;
+}

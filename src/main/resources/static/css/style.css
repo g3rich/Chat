@@ -1,0 +1,468 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.login-container,
+.register-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group label {
+    margin-right: 10px;
+}
+
+/* Если нужно специфически для этого чекбокса */
+.form-group > input[type="checkbox"] {
+    margin: 0;
+    width: auto;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 15px;
+    border-bottom: 1px solid #34495e;
+}
+
+#newChatBtn {
+    background-color: #3498db;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#newChatBtn:hover {
+    background-color: #2980b9;
+}
+
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Добавьте эти стили в ваш файл style.css */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #34495e;
+    cursor: pointer;
+}
+
+.chat-item-content {
+    flex: 1;
+    min-width: 0; /* Чтобы текст не выходил за пределы */
+}
+
+.chat-item h3 {
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ecf0f1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-item:hover {
+    background-color: #34495e;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f9fa;
+}
+
+.messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #e5ddd5;
+}
+
+.message {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.message-sender {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+.message-input {
+    display: flex;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.chat-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+.add-user-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.add-user-btn:hover {
+    background-color: #008F50;
+}
+
+.participants-count {
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.close:hover {
+    color: black;
+}
+
+.selected-participants {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.participant-tag {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+}
+.message.unread {
+    background-color: #ffeeba;
+    border-left: 4px solid #ffc107;
+}
+.chat-item.has-unread {
+    font-weight: bold;
+}
+
+.unread-badge {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 8px;
+}
+.message-status {
+    display: inline-block;
+    margin-left: 8px;
+    color: gray;
+    font-size: 0.85em;
+}
+
+.message.unread {
+    background-color: #f0f8ff;
+}
+
+.chat-item.has-unread {
+    background-color: #fff2f2;
+    font-weight: bold;
+}
+
+.unread-badge {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    float: right;
+    margin-left: 8px;
+}
+.chat-item.unread h3 {
+    font-weight: bold;
+}
+.message-status {
+    font-size: 0.75em;
+    color: gray;
+    text-align: right;
+    margin-top: 2px;
+}
+.own-message {
+    background-color: #e0f7fa;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.message {
+    max-width: 70%;
+    min-width: 80px;
+    /*margin: 5px;
+    padding: 10px;
+    border-radius: 12px;*/
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #f1f0f0;
+    display: inline-block;
+    clear: both;
+}
+
+.message-left {
+    float: left;
+    background-color: #ffffff;
+    border-top-left-radius: 0;
+
+}
+
+.message-right {
+    float: right;
+    background-color: #dcf8c6;
+    border-top-right-radius: 0;
+    text-align: right;
+}
+
+.message-sender {
+    font-weight: bold;
+}
+
+.message-time {
+    /*font-size: 0.75em;
+    color: gray;
+    margin-top: 4px;
+    display: block;*/
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+    margin-top: 3px;
+}
+
+/* Время у сообщений других пользователей — прижато вправо */
+.message-left .message-time {
+    text-align: right;
+}
+
+/* Время у сообщений текущего пользователя — прижато влево */
+.message-right .message-time {
+    text-align: left;
+}
+
+/* Добавьте эти стили в ваш файл style.css */
+.chat-item.unread {
+    background-color: #f0f7ff; /* Светло-голубой фон */
+    border-left: 4px solid #4a90e2; /* Синяя полоса слева */
+}
+
+.chat-item.unread h3 {
+    color: #2c3e50; /* Темный цвет заголовка */
+    font-weight: bold;
+}
+
+.chat-item.unread .avatar {
+    background-color: #4a90e2; /* Синий аватар */
+}
+
+.chat-item.unread .message-preview {
+    font-weight: normal;
+    color: #2c3e50; /* Темный цвет текста */
+}
+
+.unread-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;  /* Фиксированная ширина вместо min-width */
+    height: 18px; /* Фиксированная высота */
+    background-color: #4a90e2;
+    border-radius: 50%;  /* 50% делает идеальный круг */
+    margin-left: 8px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;      /* Убираем лишнее пространство вокруг текста */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+    padding: 0;          /* Убираем padding, так как ширина фиксированная */
+    flex-shrink: 0;      /* Запрещаем сжатие */
+}
+
+.unread-indicator[data-count="100+"] {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+}
+
+.message-status {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.icon {
+    color: #999;
+    font-size: 12px;
+}
+
+.icon.read {
+    color: #4CAF50;
+}

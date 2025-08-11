@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Loading...</title>
+</head>
+<body>
+<script>
+    fetch("/api/users/me", { credentials: "include" })
+        .then(res => res.json())
+        .then(user => {
+            console.log("role check");
+            if (user.roles.some(role => role.name === "ROLE_ADMIN")) {
+                window.location.href = "/admin";
+            } else {
+                window.location.href = "/chat";
+            }
+        })
+        .catch(() => window.location.href = "/login");
+</script>
+</body>
+</html>

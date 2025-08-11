@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат Приложение</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем токен из URL и сохраняем
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            if (token) {
+                localStorage.setItem('token', token);
+            }
+
+            // Проверяем авторизацию
+            if (!localStorage.getItem('token')) {
+                window.location.href = '/login';
+            }
+        });
+        /*]]>*/
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="chat-container">
+    <div class="sidebar">
+        <div class="header">
+            <h2>Чаты</h2>
+            <button id="newChatBtn">Новый чат</button>
+        </div>
+        <div id="chatList" class="chat-list">
+            <!-- Chats will be loaded here -->
+        </div>
+    </div>
+    <div class="main">
+        <div id="chatHeader" class="chat-header">
+            <div class="chat-header-left">
+                <h2 id="chatTitle">Выберете чат</h2>
+                <span class="participants-count" id="participantsCount" style="display: none; cursor: pointer;">
+                    Участники: <span id="participantsNumber"></span>
+                </span>
+                <button id="addUserBtn" class="add-user-btn" style="display: none;">Добавить</button>
+            </div>
+            <button id="logoutBtn" class="logout-btn">Выйти</button>
+        </div>
+        <div id="messages" class="messages">
+            <!-- Messages will be loaded here -->
+        </div>
+        <div class="message-input">
+            <input type="text" id="messageInput" placeholder="Сообщение...">
+            <label for="fileInput" style="cursor:pointer; margin-right: 10px;">📎</label>
+            <input type="file" id="fileInput" style="display:none;" />
+
+            <button id="sendButton">Отправить</button>
+        </div>
+    </div>
+</div>
+
+<div id="newChatModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Создать новый чат</h2>
+        <div class="modal-body">
+            <!--<div class="form-group">
+                <label for="chatName">Chat Name:</label>
+                <input type="text" id="chatName" class="form-control" placeholder="Enter chat name">
+            </div>
+            <div class="form-group">
+                <label for="participantSearch">Participant:</label>
+                <input type="text" id="participantSearch" class="form-control" placeholder="Search user">
+                <div id="searchResults" class="search-results"></div>
+            </div>-->
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isGroupChat"/>
+                    <span>Создать групповой чат</span>
+                </label>
+            </div>
+
+            <div class="form-group group-chat-only" style="display: none;">
+                <label for="chatName">Название:</label>
+                <input type="text" id="chatName" class="form-control" placeholder="Введите название...">
+            </div>
+
+            <div class="form-group">
+                <label for="participantSearch">Участники:</label>
+                <input type="text" id="participantSearch" class="form-control" placeholder="Найти пользователя">
+                <div id="searchResults" class="search-results"></div>
+                <div id="selectedParticipants" class="selected-participants"></div>
+            </div>
+
+            <button id="createChatBtn" class="btn-primary">Создать чат</button>
+        </div>
+    </div>
+</div>
+
+<div id="addUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close-add">&times;</span>
+        <h2>Добавить участников</h2>
+        <div class="form-group">
+            <label for="addParticipantSearch">Найти пользователя:</label>
+            <input type="text" id="addParticipantSearch" class="form-control" placeholder="Введите имя">
+            <div id="addSearchResults" class="search-results"></div>
+        </div>
+        <div id="addSelectedParticipants" class="selected-participants"></div>
+        <button id="addUsersToChatBtn" class="btn-primary">Добавить</button>
+    </div>
+</div>
+
+<div id="viewParticipantsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-participants">&times;</span>
+        <h2>Участники чата</h2>
+        <ul id="participantsList" class="participants-list"></ul>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+<script src="/js/chat.js"></script>
+</body>
+</html>

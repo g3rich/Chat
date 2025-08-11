@@ -1,0 +1,123 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: yourname
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: chats
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_group
+                  type: boolean
+                  defaultValue: false
+
+        - createTable:
+            tableName: user_chats
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: users(id)
+                    foreignKeyName: fk_user_chat_user
+              - column:
+                  name: chat_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: chats(id)
+                    foreignKeyName: fk_user_chat_chat
+              - column:
+                  name: joined_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+        - createTable:
+            tableName: messages
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: chat_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: chats(id)
+                    foreignKeyName: fk_message_chat
+              - column:
+                  name: sender_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: users(id)
+                    foreignKeyName: fk_message_sender
+              - column:
+                  name: content
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sent_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+        - createIndex:
+            tableName: user_chats
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: chat_id
+            unique: true
